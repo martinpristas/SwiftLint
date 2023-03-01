@@ -34,9 +34,9 @@ struct SwiftLintPlugin: BuildToolPlugin {
 
         // Manually look for configuration files, to avoid issues when the plugin does not execute our tool from the
         // package source directory.
-        print("\(packageDirectory.string)")
-        print("\(workingDirectory.string)")
-        if let configuration = workingDirectory.firstConfigurationFileInParentDirectories() {
+        print("PACKAGE DIR: \(packageDirectory.string)")
+        if let configuration = packageDirectory.firstConfigurationFileInParentDirectories() {
+            print("SUCCESS")
             arguments.append(contentsOf: ["--config", "\(configuration.string)"])
         }
         arguments += inputFiles.map(\.string)

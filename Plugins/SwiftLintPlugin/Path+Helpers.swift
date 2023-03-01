@@ -25,7 +25,9 @@ extension Path {
                 return path.removingLastComponent()
             }
         ).first { path in
+            print("path: \(path)")
             let potentialConfigurationFile = path.appending(subpath: defaultConfigurationFileName)
+            print("path potetntial: \(potentialConfigurationFile.string)")
             return potentialConfigurationFile.isAccessible()
         }
         return proposedDirectory?.appending(subpath: defaultConfigurationFileName)
@@ -33,9 +35,12 @@ extension Path {
 
     /// Safe way to check if the file is accessible from within the current process sandbox.
     private func isAccessible() -> Bool {
+        print("is accessible?")
         let result = string.withCString { pointer in
             access(pointer, R_OK)
         }
+        
+        print("is accessible? \(result)")
 
         return result == 0
     }
