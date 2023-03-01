@@ -39,6 +39,7 @@ struct SwiftLintPlugin: BuildToolPlugin {
             print("SUCCESS")
             arguments.append(contentsOf: ["--config", "\(configuration.string)"])
         }
+        print("\(dump(arguments))")
         arguments += inputFiles.map(\.string)
 
         // We are not producing output files and this is needed only to not include cache files into bundle
